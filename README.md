@@ -55,9 +55,9 @@ To get a local copy up and running follow these simple steps.
 
 👤 **Ahmed**
 
-- GitHub: [@ahmed](https://github.com/)
-- Twitter: [@twtter](https://twitter.com/)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/)
+- GitHub: [@ahmed](https://github.com/ahmednazirmusah)
+- Twitter: [@twtter](https://twitter.com/ahmednazirmusah)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ahmed-nazir-musah-529956214)
 
 ## 🤝 Contributing
 
