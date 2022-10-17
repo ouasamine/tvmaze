@@ -5,7 +5,7 @@ html {
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; 
+  padding: 0;
   color: #2c2c2c;
 }
 
@@ -46,8 +46,35 @@ body {
   width: 180px;
 }
 .p-footer {
-    background: aliceblue;
-    padding: 10px;
-    font-size: 23px;
-    font-weight: 700;
+  background: aliceblue;
+  padding: 10px;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.movie-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-underImage {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 5px;
+}
+
+.like-button {
+  background:none;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-heart:active {
+  background: red;
+}
+
+.like-button {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
 }
