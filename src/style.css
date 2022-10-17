@@ -32,6 +32,19 @@ body {
   text-decoration: none;
   color: #2c2c2c;
 }
+
+#shows-preview {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 120px;
+  justify-content: center;
+  width: 640px;
+}
+
+#shows-preview img {
+  width: 180px;
+}
 .p-footer {
     background: aliceblue;
     padding: 10px;
