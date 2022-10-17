@@ -32,3 +32,9 @@ body {
   text-decoration: none;
   color: #2c2c2c;
 }
+.p-footer {
+    background: aliceblue;
+    padding: 10px;
+    font-size: 23px;
+    font-weight: 700;
+}

@@ -1,6 +1,6 @@
 {
   "name": "tvmaze",
-  "description": "",
+  "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "version": "1.0.0",
   "main": "webpack.config.js",
   "repository": {
