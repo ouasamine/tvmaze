@@ -34,12 +34,13 @@ body {
 }
 
 #shows-preview {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 120px;
-  justify-content: center;
-  width: 640px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 120px;
+    justify-content: center;
+    width: 640px;
+    margin-bottom: 29px;
 }
 
 #shows-preview img {
@@ -77,4 +78,8 @@ body {
     flex-direction: column;
     align-items: center;
     display: flex;
+}
+
+footer {
+  width: 100%;
 }
