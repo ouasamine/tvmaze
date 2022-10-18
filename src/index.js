@@ -2,7 +2,7 @@ import fetchShow from '../modules/shows-fetch.js';
 import './style.css';
 
 const container = document.querySelector('#shows-preview');
-const showsIds = [153021, 367506, 266189, 328634, 72108, 164981];
+const showsIds = [73, 33352, 69, 21845, 60, 100];
 
 function createCommentsPopup(showObj) {
   const popupWindow = document.createElement('div');
@@ -12,11 +12,11 @@ function createCommentsPopup(showObj) {
   closeBtt.innerHTML = '<div></div><div></div>';
   popupWindow.innerHTML = `
       <div class="img-wrapper">
-          <img src="">IMAGE
+          <img src="${showObj.image.original}">
       </div>
       <h2 class="show-name">${showObj.name}</h2>
       <div class="details">
-          <span>Genre: Drama</span>
+          <span>Genres  : Drama</span>
           <span>Episodes: 24</span>
           <span>Created by: Jhon Doe</span>
       </div>
@@ -29,7 +29,7 @@ function createCommentsPopup(showObj) {
 }
 
 showsIds.forEach((show) => {
-  fetchShow(show).then((show) => {
+  fetchShow('shows', show).then((show) => {
     const showCard = document.createElement('div');
     const butt = document.createElement('button');
     showCard.classList.add('movie-holder');

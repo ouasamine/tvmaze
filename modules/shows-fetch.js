@@ -1,5 +1,5 @@
-export default async function fetchShow(id) {
-  const fetching = await fetch(`https://api.tvmaze.com/lookup/shows?thetvdb=${id}`)
+export default async function fetchShow(endpoint, id) {
+  const fetching = await fetch(`https://api.tvmaze.com/${endpoint}/${id}`)
     .then((response) => response.json());
   return fetching;
 }
