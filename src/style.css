@@ -134,7 +134,7 @@ body {
   width: 65%;
   display: grid;
   grid-template: none / 50% 50%;
-  background-color: green;
+  background-color: white;
   align-content: center;
 }
 
