@@ -46,16 +46,15 @@ body {
 #shows-preview img {
   width: 180px;
 }
-.p-footer {
-  background: aliceblue;
-  padding: 10px;
-  font-size: 23px;
-  font-weight: 700;
-}
 
 .movie-holder {
   display: flex;
   flex-direction: column;
+  width: 180px;
+}
+
+.movie-holder .show-title {
+  width: 100%;
 }
 
 .section-underImage {
@@ -82,4 +81,11 @@ body {
 
 footer {
   width: 100%;
+}
+
+.p-footer {
+  background: aliceblue;
+  padding: 10px;
+  font-size: 23px;
+  font-weight: 700;
 }
