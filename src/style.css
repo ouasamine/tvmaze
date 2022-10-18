@@ -126,10 +126,6 @@ body {
   max-height: 100%;
 }
 
-#comments-popup .show-name {
- 
-}
-
 #comments-popup .details {
   width: 65%;
   display: grid;
