@@ -1,19 +1,12 @@
-import fetchShow from '../modules/shows-fetch.js';
 import './style.css';
+import fetchShow from '../modules/shows-fetch.js';
+import createShowCard from '../modules/show-card.js';
 
 const container = document.querySelector('#shows-preview');
-const showsIds = [153021, 367506, 266189, 328634, 72108, 164981];
-showsIds.forEach((show) => {
-  fetchShow(show).then((res) => {
-    container.innerHTML += `<div class="movie-holder">
-    <img src="${res.image.medium}">
-    <section class='section-underImage'>
-      <p class="show-title">${res.name}</p>
-      <div class="like-button">
-        <button class="like-button"><i class="fa-regular fa-heart"></i></button>
-        <p>2 likes</p>
-      </div>
-    </section>
-    <button>Comment</button></div>`;
+const showsIds = [73, 33352, 69, 21845, 60, 100];
+
+showsIds.forEach((showId) => {
+  fetchShow('shows', showId).then((show) => {
+    createShowCard(container, show, showId);
   });
 });
