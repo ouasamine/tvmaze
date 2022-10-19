@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { fetchGetInv, fetchPostInv, fetchShow } from './api-fetches.js';
+import commentsCounter from './comments-counter.js';
 
 export default async function createCommentsPopup(showObj, showId) {
   const creators = [];
@@ -14,9 +15,11 @@ export default async function createCommentsPopup(showObj, showId) {
   await fetchShow('shows', showId, '/seasons').then((show) => {
     seasons = show.pop().number;
   });
+
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
   const commentsDisplay = document.createElement('div');
+  const commentsDisplayHeader = document.createElement('h3');
   const newCommentForm = document.createElement('div');
   const newCommentOwner = document.createElement('input');
   const newCommentContent = document.createElement('textarea');
@@ -42,10 +45,9 @@ export default async function createCommentsPopup(showObj, showId) {
       </div>
   `;
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
-  commentsDisplay.innerHTML = '<h3>Comments</h3>';
   newCommentForm.innerHTML = '<h3>Add Comment</h3>';
 
-  fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
+  await fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
     if (comments.length > 0) {
       comments.forEach((comment) => {
         commentsDisplay.innerHTML += `
@@ -56,6 +58,8 @@ export default async function createCommentsPopup(showObj, showId) {
       commentsDisplay.innerHTML += '<span>No comments yet!</span>';
     }
   });
+  commentsDisplayHeader.innerText = `Comments (${commentsCounter(commentsDisplay)})`;
+  commentsDisplay.insertBefore(commentsDisplayHeader, commentsDisplay.firstChild);
   popupWindow.appendChild(commentsDisplay);
   newCommentForm.append(newCommentOwner, newCommentContent, newCommentBtt);
   popupWindow.appendChild(newCommentForm);
