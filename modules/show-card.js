@@ -43,6 +43,22 @@ const createShowCard = async (container, show, showId) => {
   likeBtt.addEventListener('click', () => {
     fetchPostInv('/likes', { item_id: showId });
   });
+
+  const counter = (moviesContainer) => {
+    let counter = 0;
+    const movies = moviesContainer.querySelectorAll('.movie-holder');
+    movies.forEach(() => {
+      counter += 1;
+    });
+    return counter;
+  };
+
+  const allmovies = document.querySelector('#shows-preview');
+  const moviecounter = counter(allmovies);
+
+  const displacounter = document.querySelector('.counter');
+
+  displacounter.innerHTML = `<a href="#scripted">Scripted(${moviecounter})</a>`;
 };
 
 export default createShowCard;
