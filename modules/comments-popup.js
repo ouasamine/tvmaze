@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { fetchShow } from './api-fetches.js';
+import { fetchGetInv, fetchPostInv, fetchShow } from './api-fetches.js';
 
 export default async function createCommentsPopup(showObj, showId) {
   const creators = [];
@@ -16,9 +16,11 @@ export default async function createCommentsPopup(showObj, showId) {
   });
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
+  const commentsDisplay = document.createElement('div');
   closeBtt.classList.add('close-butt');
   popupWindow.id = 'comments-popup';
   closeBtt.innerHTML = '<div></div><div></div>';
+  commentsDisplay.classList.add('comments-display');
   popupWindow.innerHTML = `
       <div class="img-wrapper">
           <img src="${showObj.image.original}">
@@ -32,6 +34,26 @@ export default async function createCommentsPopup(showObj, showId) {
       </div>
   `;
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
+  commentsDisplay.innerHTML = '<h3>Comments</h3>';
+  // fetchPostInv('/comments', {
+  //   item_id: 73,
+  //   username: 'John',
+  //   comment: 'Hi!',
+  // });
+
+  fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
+    if (comments.length > 0) {
+      comments.forEach((comment) => {
+        commentsDisplay.innerHTML += `
+          <span>${comment.creation_date} ${comment.username}: ${comment.comment}</span>
+        `;
+      });
+    } else {
+      commentsDisplay.innerHTML += '<span>No comments yet!</span>';
+    }
+  });
+  popupWindow.appendChild(commentsDisplay);
+
   closeBtt.addEventListener('click', () => {
     popupWindow.remove();
   });
