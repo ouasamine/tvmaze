@@ -1,5 +1,5 @@
 import './style.css';
-import fetchShow from '../modules/shows-fetch.js';
+import { fetchShow } from '../modules/api-fetches.js';
 import createShowCard from '../modules/show-card.js';
 
 const container = document.querySelector('#shows-preview');

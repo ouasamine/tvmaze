@@ -1,7 +1,7 @@
 import createCommentsPopup from './comments-popup.js';
+import { fetchGetInv, fetchPostInv } from './api-fetches.js';
 
-// export default async function
- const createShowCard = async (container, show, showId) => {
+const createShowCard = async (container, show, showId) => {
   const showCard = document.createElement('div');
   const butt = document.createElement('button');
   const likeBtt = document.createElement('button');
@@ -16,15 +16,13 @@ import createCommentsPopup from './comments-popup.js';
       <div class="like-button">
       </div>
     </section>`;
-  const endpoint = 'apps/K2yfbgIQf26WocoYCIC5/likes/';
-  fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/${endpoint}`)
-    .then((resp) => resp.json()).then(res => {  
-      if (res.filter((item) => item.item_id === showId).pop()) {
-        const { likes } = res.filter((item) => item.item_id === showId).pop();
-        console.log(likes);
-        likesCount.innerText = `${likes} likes`;
-      }
-    });
+
+  fetchGetInv('/likes').then((res) => {
+    if (res.filter((item) => item.item_id === showId).pop()) {
+      const { likes } = res.filter((item) => item.item_id === showId).pop();
+      likesCount.innerText = `${likes} likes`;
+    }
+  });
   const likeCont = showCard.querySelector('div.like-button');
   butt.innerText = 'Button';
   likeBtt.innerHTML = '<i class="fa-regular fa-heart"></i>';
@@ -32,18 +30,14 @@ import createCommentsPopup from './comments-popup.js';
   likeCont.appendChild(likeBtt);
   likeCont.appendChild(likesCount);
   container.appendChild(showCard);
+
   butt.addEventListener('click', () => {
     createCommentsPopup(show, showId);
   });
+
   likeBtt.addEventListener('click', () => {
-    const endpoint = 'apps/K2yfbgIQf26WocoYCIC5/likes/';
-    fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/${endpoint}`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ item_id: showId }) })
-      .then((response) => response).then(res => { console.log(res); });
-      window.location.reload();
+    fetchPostInv('/likes', { item_id: showId });
   });
-}
+};
 
 export default createShowCard;

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import fetchShow from './shows-fetch.js';
+import { fetchShow } from './api-fetches.js';
 
 export default async function createCommentsPopup(showObj, showId) {
   const creators = [];
