@@ -55,7 +55,7 @@ export default async function createCommentsPopup(showObj, showId) {
         `;
       });
     } else {
-      commentsDisplay.innerHTML += '<span>No comments yet!</span>';
+      commentsDisplay.innerHTML += '<p>No comments yet!</p>';
     }
   });
   commentsDisplayHeader.innerText = `Comments (${commentsCounter(commentsDisplay)})`;
@@ -73,6 +73,7 @@ export default async function createCommentsPopup(showObj, showId) {
   });
 
   closeBtt.addEventListener('click', () => {
+    document.body.style.overflowY = 'auto';
     popupWindow.remove();
   });
   document.body.appendChild(popupWindow);
