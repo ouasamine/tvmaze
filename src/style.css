@@ -34,13 +34,13 @@ body {
 }
 
 #shows-preview {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 120px;
-    justify-content: center;
-    width: 640px;
-    margin-bottom: 29px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 120px;
+  justify-content: center;
+  width: 640px;
+  margin-bottom: 29px;
 }
 
 #shows-preview img {
@@ -66,20 +66,17 @@ body {
 }
 
 .like-button {
-  background:none;
+  background: none;
   border: none;
   cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  width: 70%;
 }
 
 .fa-heart:active {
   background: red;
-}
-
-.like-button {
-    flex-direction: column;
-    align-items: center;
-    display: flex;
-    width: 70%;
 }
 
 #comments-popup {
@@ -112,7 +109,7 @@ body {
 }
 
 .close-butt div:nth-child(1) {
-  transform: rotate(-49deg) translate(-4px, 0px);
+  transform: rotate(-49deg) translate(-4px, 0);
 }
 
 .close-butt div:nth-child(2) {
@@ -125,7 +122,7 @@ body {
   background-color: yellow;
 }
 
-.img-wrapper img {
+#comments-popup .img-wrapper img {
   width: 100%;
   max-height: 100%;
 }
@@ -151,6 +148,7 @@ body {
 .comments-display h3 {
   margin: 5px 0;
 }
+
 #comments-popup .new-comment-form {
   display: flex;
   flex-direction: column;
