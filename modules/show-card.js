@@ -32,6 +32,7 @@ const createShowCard = async (container, show, showId) => {
   container.appendChild(showCard);
 
   butt.addEventListener('click', () => {
+    document.body.style.overflowY = 'hidden';
     createCommentsPopup(show, showId);
   });
 

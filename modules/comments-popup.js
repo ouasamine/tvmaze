@@ -17,10 +17,18 @@ export default async function createCommentsPopup(showObj, showId) {
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
   const commentsDisplay = document.createElement('div');
+  const newCommentForm = document.createElement('div');
+  const newCommentOwner = document.createElement('input');
+  const newCommentContent = document.createElement('textarea');
+  const newCommentBtt = document.createElement('button');
+
   closeBtt.classList.add('close-butt');
+  commentsDisplay.classList.add('comments-display');
+  newCommentForm.classList.add('new-comment-form');
+  newCommentOwner.type = 'text';
+  newCommentBtt.innerText = 'Comment';
   popupWindow.id = 'comments-popup';
   closeBtt.innerHTML = '<div></div><div></div>';
-  commentsDisplay.classList.add('comments-display');
   popupWindow.innerHTML = `
       <div class="img-wrapper">
           <img src="${showObj.image.original}">
@@ -35,11 +43,7 @@ export default async function createCommentsPopup(showObj, showId) {
   `;
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
   commentsDisplay.innerHTML = '<h3>Comments</h3>';
-  // fetchPostInv('/comments', {
-  //   item_id: 73,
-  //   username: 'John',
-  //   comment: 'Hi!',
-  // });
+  newCommentForm.innerHTML = '<h3>Add Comment</h3>';
 
   fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
     if (comments.length > 0) {
@@ -53,6 +57,16 @@ export default async function createCommentsPopup(showObj, showId) {
     }
   });
   popupWindow.appendChild(commentsDisplay);
+  newCommentForm.append(newCommentOwner, newCommentContent, newCommentBtt);
+  popupWindow.appendChild(newCommentForm);
+
+  newCommentBtt.addEventListener('click', () => {
+    fetchPostInv('/comments', {
+      item_id: showId,
+      username: newCommentOwner.value,
+      comment: newCommentContent.value,
+    });
+  });
 
   closeBtt.addEventListener('click', () => {
     popupWindow.remove();

@@ -95,6 +95,7 @@ body {
   align-items: center;
   padding: 15px;
   gap: 20px;
+  overflow-y: auto;
 }
 
 #comments-popup .close-butt {
@@ -148,6 +149,14 @@ body {
 }
 
 .comments-display h3 {
+  margin: 5px 0;
+}
+#comments-popup .new-comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-comment-form * {
   margin: 5px 0;
 }
 
