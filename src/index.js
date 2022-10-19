@@ -10,3 +10,17 @@ showsIds.forEach((showId) => {
     createShowCard(container, show, showId);
   });
 });
+
+const counter = (arr) => {
+    let showcounter = 0;
+    for (let i = 0; i < arr.length; i ++){
+      showcounter ++;
+    }
+    return showcounter;
+}
+
+const moviecounter = counter(showsIds);
+
+const displacounter = document.querySelector('.counter');
+
+displacounter.innerHTML += `<a href="#scripted">Scripted(${moviecounter})</a>`;
