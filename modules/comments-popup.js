@@ -1,16 +1,19 @@
+/* eslint-disable no-underscore-dangle */
 import fetchShow from './shows-fetch.js';
 
-/* eslint-disable no-underscore-dangle */
 export default async function createCommentsPopup(showObj, showId) {
   const creators = [];
-  await fetchShow('shows', showId, 'crew').then((show) => {
-    show._embedded.crew
+  let seasons = 0;
+  await fetchShow('shows', showId, '/crew').then((show) => {
+    show
       .filter((crewMember) => crewMember.type === 'Creator' || crewMember.type === 'Developer')
       .forEach((creator) => {
         creators.push(creator.person.name);
       });
   });
-  
+  await fetchShow('shows', showId, '/seasons').then((show) => {
+    seasons = show.pop().number;
+  });
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
   closeBtt.classList.add('close-butt');
@@ -23,8 +26,9 @@ export default async function createCommentsPopup(showObj, showId) {
       <h2 class="show-name">${showObj.name}</h2>
       <div class="details">
           <span>Genres  : ${showObj.genres.toString().replace(/,/g, ' | ')}</span>
-          <span>Episodes: 24</span>
+          <span>N° of seasons: ${seasons}</span>
           <span>Created by: ${creators.toString().replace(/,/g, ' | ')}</span>
+          <span>Premiered on: ${showObj.premiered}</span>
       </div>
   `;
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
