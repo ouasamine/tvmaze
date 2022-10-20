@@ -67,7 +67,7 @@ export default async function createCommentsPopup(showObj, showId) {
   newCommentForm.innerHTML = '<h3>Add Comment</h3>';
 
   await createShowComments(commentsDisplay, showId).then((comments) => {
-    popupWindow.appendChild(comments); 
+    popupWindow.appendChild(comments);
   });
 
   newCommentForm.append(newCommentOwner, newCommentContent, newCommentBtt);
