@@ -11,8 +11,8 @@ for (let i = 0; i < 5; i += 1) {
 }
 const container2 = document.createElement('div');
 for (let i = 0; i < 13; i += 1) {
-    const container = document.createElement('div');
-    container2.append(container);
+  const container = document.createElement('div');
+  container2.append(container);
 }
 const container3 = document.createElement('div');
 
