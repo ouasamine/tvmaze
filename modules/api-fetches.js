@@ -5,7 +5,7 @@ export function fetchShow(endpoint, id, embed = '') {
 }
 
 export function fetchPostInv(endpoint, Obj) {
-  fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/K2yfbgIQf26WocoYCIC5${endpoint}`, {
+  return fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/K2yfbgIQf26WocoYCIC5${endpoint}`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify(Obj),

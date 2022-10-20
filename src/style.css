@@ -39,7 +39,7 @@ body {
   flex-wrap: wrap;
   margin-top: 120px;
   justify-content: center;
-  width: 640px;
+  width: 680px;
   margin-bottom: 29px;
 }
 
@@ -50,7 +50,7 @@ body {
 .movie-holder {
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: 190px;
   justify-content: space-between;
 }
 
@@ -65,14 +65,21 @@ body {
   align-items: center;
 }
 
+.likes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likes-container p {
+  width: max-content;
+}
+
 .like-button {
   background: none;
   border: none;
   cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  display: flex;
-  width: 70%;
+  
 }
 
 .fa-heart:active {

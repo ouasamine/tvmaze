@@ -1,6 +1,24 @@
-/* eslint-disable no-underscore-dangle */
 import { fetchGetInv, fetchPostInv, fetchShow } from './api-fetches.js';
 import commentsCounter from './comments-counter.js';
+
+async function createShowComments(commentsDisplay, showId) {
+  commentsDisplay.innerHTML = '';
+  await fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
+    if (comments.length > 0) {
+      comments.forEach((comment) => {
+        commentsDisplay.innerHTML += `
+          <span>${comment.creation_date} ${comment.username}: ${comment.comment}</span>
+        `;
+      });
+    } else {
+      commentsDisplay.innerHTML += '<p>No comments yet!</p>';
+    }
+  });
+  const commentsDisplayHeader = document.createElement('h3');
+  commentsDisplayHeader.innerText = `Comments (${commentsCounter(commentsDisplay)})`;
+  commentsDisplay.insertBefore(commentsDisplayHeader, commentsDisplay.firstChild);
+  return commentsDisplay;
+}
 
 export default async function createCommentsPopup(showObj, showId) {
   const creators = [];
@@ -19,7 +37,6 @@ export default async function createCommentsPopup(showObj, showId) {
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
   const commentsDisplay = document.createElement('div');
-  const commentsDisplayHeader = document.createElement('h3');
   const newCommentForm = document.createElement('div');
   const newCommentOwner = document.createElement('input');
   const newCommentContent = document.createElement('textarea');
@@ -29,8 +46,8 @@ export default async function createCommentsPopup(showObj, showId) {
   commentsDisplay.classList.add('comments-display');
   newCommentForm.classList.add('new-comment-form');
   newCommentOwner.type = 'text';
-  newCommentBtt.innerText = 'Comment';
   popupWindow.id = 'comments-popup';
+
   closeBtt.innerHTML = '<div></div><div></div>';
   popupWindow.innerHTML = `
       <div class="img-wrapper">
@@ -45,22 +62,14 @@ export default async function createCommentsPopup(showObj, showId) {
       </div>
   `;
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
+
+  newCommentBtt.innerText = 'Comment';
   newCommentForm.innerHTML = '<h3>Add Comment</h3>';
 
-  await fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
-    if (comments.length > 0) {
-      comments.forEach((comment) => {
-        commentsDisplay.innerHTML += `
-          <span>${comment.creation_date} ${comment.username}: ${comment.comment}</span>
-        `;
-      });
-    } else {
-      commentsDisplay.innerHTML += '<p>No comments yet!</p>';
-    }
+  await createShowComments(commentsDisplay, showId).then((comments) => {
+    popupWindow.appendChild(comments); 
   });
-  commentsDisplayHeader.innerText = `Comments (${commentsCounter(commentsDisplay)})`;
-  commentsDisplay.insertBefore(commentsDisplayHeader, commentsDisplay.firstChild);
-  popupWindow.appendChild(commentsDisplay);
+
   newCommentForm.append(newCommentOwner, newCommentContent, newCommentBtt);
   popupWindow.appendChild(newCommentForm);
 
@@ -69,6 +78,10 @@ export default async function createCommentsPopup(showObj, showId) {
       item_id: showId,
       username: newCommentOwner.value,
       comment: newCommentContent.value,
+    }).then(() => {
+      createShowComments(commentsDisplay, showId).then((comments) => {
+        popupWindow.insertBefore(comments, commentsDisplay.lastChild);
+      });
     });
   });
 
