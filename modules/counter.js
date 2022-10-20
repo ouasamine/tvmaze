@@ -1,9 +1,10 @@
 const counter = (moviesContainer) => {
   let counter = 0;
-  const movies = moviesContainer.querySelectorAll('#shows-preview');
+  const movies = moviesContainer.querySelectorAll('div');
   movies.forEach(() => {
     counter += 1;
   });
   return counter;
 };
-module.exports = counter;
+
+export default counter;
