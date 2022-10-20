@@ -12,7 +12,7 @@ for (let i = 0; i < 5; i += 1) {
   container1.append(span);
 }
 
-for (let i = 0; i < 10; i += 1) {
+for (let i = 0; i < 10; i += 1git ) {
   const span = document.createElement('span');
   container3.append(span);
 }
