@@ -20,12 +20,15 @@ body {
   display: flex;
   gap: 85px;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 26px;
 }
 
 .navlinks {
   list-style: none;
   display: flex;
   gap: 55px;
+  flex-wrap: wrap;
 }
 
 .navlinks a {
@@ -34,12 +37,13 @@ body {
 }
 
 #shows-preview {
+  min-width: 248px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 120px;
   justify-content: center;
-  width: 680px;
+  max-width: 680px;
   margin-bottom: 29px;
 }
 
