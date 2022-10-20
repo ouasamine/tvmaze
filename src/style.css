@@ -1,0 +1,179 @@
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #2c2c2c;
+}
+
+body {
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#navbar {
+  display: flex;
+  gap: 85px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 26px;
+}
+
+.navlinks {
+  list-style: none;
+  display: flex;
+  gap: 55px;
+  flex-wrap: wrap;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: #2c2c2c;
+}
+
+#shows-preview {
+  min-width: 248px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 120px;
+  justify-content: center;
+  max-width: 680px;
+  margin-bottom: 29px;
+}
+
+#shows-preview img {
+  width: 180px;
+}
+
+.movie-holder {
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  justify-content: space-between;
+}
+
+.movie-holder .show-title {
+  width: 100%;
+}
+
+.section-underImage {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 5px;
+  align-items: center;
+}
+
+.likes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.likes-container p {
+  width: max-content;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-heart:active {
+  background: red;
+}
+
+#comments-popup {
+  position: fixed;
+  background: #d2d2d2;
+  top: 25px;
+  right: 25px;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+#comments-popup .close-butt {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+
+.close-butt div {
+  width: 25px;
+  height: 4px;
+  background-color: #2c2c2c;
+  margin: 1px 0;
+}
+
+.close-butt div:nth-child(1) {
+  transform: rotate(-49deg) translate(-4px, 0);
+}
+
+.close-butt div:nth-child(2) {
+  transform: rotate(49deg) translate(-3px, 1px);
+}
+
+#comments-popup .img-wrapper {
+  width: 65%;
+  height: 300px;
+  background-color: yellow;
+}
+
+#comments-popup .img-wrapper img {
+  width: 100%;
+  max-height: 100%;
+}
+
+#comments-popup .details {
+  width: 65%;
+  display: grid;
+  grid-template: none / 50% 50%;
+  background-color: white;
+  align-content: center;
+}
+
+#comments-popup span {
+  margin: 5px 0;
+}
+
+#comments-popup .comments-display {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.comments-display h3 {
+  margin: 5px 0;
+}
+
+#comments-popup .new-comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-comment-form * {
+  margin: 5px 0;
+}
+
+footer {
+  width: 100%;
+}
+
+.p-footer {
+  background: aliceblue;
+  padding: 10px;
+  font-size: 23px;
+  font-weight: 700;
+}
