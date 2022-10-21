@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity */
 html {
   scroll-behavior: smooth;
 }
@@ -6,25 +7,68 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #2c2c2c;
+  color: #fdfdfd;
 }
 
 body {
-  padding: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 5px;
+  cursor: pointer;
+  font-weight: 600;
+  background: #d2d2d2;
+  border: none;
+  border-radius: 3px;
+  color: #2c2c2c;
+}
+
+button:hover {
+  background: #c0c0c0;
 }
 
 #navbar {
   display: flex;
   gap: 85px;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 26px;
+  width: 100%;
+  background-color: #fdfdfd;
 }
 
-.navlinks {
+#navbar h1 a {
+  text-decoration: none;
+  color: #f002;
+  background-image: url("../img/blood-wood-360x240.jpg");
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-size: 100% 100%;
+  font-size: 2rem;
+}
+
+#navbar .navlinks {
   list-style: none;
   display: flex;
   gap: 55px;
@@ -34,28 +78,36 @@ body {
 .navlinks a {
   text-decoration: none;
   color: #2c2c2c;
+  font-weight: 600;
+}
+
+.navlinks a:hover {
+  color: #414141;
 }
 
 #shows-preview {
   min-width: 248px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   flex-wrap: wrap;
-  margin-top: 120px;
   justify-content: center;
-  max-width: 680px;
-  margin-bottom: 29px;
-}
-
-#shows-preview img {
-  width: 180px;
+  padding: 50px 5%;
+  background-color: #0f1519;
 }
 
 .movie-holder {
   display: flex;
   flex-direction: column;
-  width: 190px;
+  width: 260px;
   justify-content: space-between;
+  border-radius: 5px;
+  padding: 5px;
+  background: #2c2c2c;
+  box-shadow: #a2a2a2 1px 1px 15px 1px;
+}
+
+.movie-holder img {
+  width: 100%;
 }
 
 .movie-holder .show-title {
@@ -66,7 +118,8 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 15px 5px;
-  align-items: center;
+  align-items: flex-start;
+  font-weight: 600;
 }
 
 .likes-container {
@@ -85,35 +138,64 @@ body {
   cursor: pointer;
 }
 
-.fa-heart:active {
+.like-button:hover {
+  background: none;
+}
+
+.like-button:active {
   background: red;
+}
+
+#popup-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #a2a2a222;
+  backdrop-filter: blur(5px);
 }
 
 #comments-popup {
   position: fixed;
-  background: #d2d2d2;
+  background: #2c2c2c;
   top: 25px;
-  right: 25px;
+  right: 10%;
   bottom: 25px;
-  left: 25px;
+  left: 10%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px;
+  padding: 35px 15px;
   gap: 20px;
   overflow-y: auto;
+  border-radius: 4px;
+  scroll-behavior: smooth;
+}
+
+#comments-popup * {
+  max-width: 700px;
+}
+
+#comments-popup h3 {
+  text-align: center;
+  margin: 5px 0;
+  color: #fdfdfd;
 }
 
 #comments-popup .close-butt {
   cursor: pointer;
   position: absolute;
   right: 10px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 .close-butt div {
   width: 25px;
   height: 4px;
-  background-color: #2c2c2c;
+  background-color: #fff;
   margin: 1px 0;
 }
 
@@ -126,22 +208,25 @@ body {
 }
 
 #comments-popup .img-wrapper {
-  width: 65%;
-  height: 300px;
-  background-color: yellow;
+  width: 400px;
 }
 
 #comments-popup .img-wrapper img {
   width: 100%;
-  max-height: 100%;
+}
+
+#comments-popup .show-name {
+  font-size: 2.2rem;
 }
 
 #comments-popup .details {
-  width: 65%;
   display: grid;
   grid-template: none / 50% 50%;
-  background-color: white;
   align-content: center;
+  border: 2px solid #fff;
+  column-gap: 15px;
+  row-gap: 15px;
+  padding: 15px;
 }
 
 #comments-popup span {
@@ -149,13 +234,15 @@ body {
 }
 
 #comments-popup .comments-display {
+  width: 80%;
+}
+
+#comments-popup .comments-display div {
   display: flex;
   flex-direction: column;
   text-align: center;
-}
-
-.comments-display h3 {
-  margin: 5px 0;
+  height: 150px;
+  overflow-y: auto;
 }
 
 #comments-popup .new-comment-form {
@@ -165,15 +252,42 @@ body {
 
 .new-comment-form * {
   margin: 5px 0;
+  width: 350px;
+  padding: 8px 5px;
+  color: #2c2c2c;
+}
+
+.new-comment-form textarea {
+  min-height: 150px;
+  resize: none;
 }
 
 footer {
   width: 100%;
+  background-color: #fdfdfd;
 }
 
 .p-footer {
-  background: aliceblue;
-  padding: 10px;
-  font-size: 23px;
-  font-weight: 700;
+  padding: 20px 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  #comments-popup {
+    right: 10px;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+  }
+
+  #comments-popup .img-wrapper {
+    width: 200px;
+  }
+
+  .new-comment-form * {
+    width: 200px;
+  }
 }

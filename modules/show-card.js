@@ -33,8 +33,14 @@ const createShowCard = async (container, show, showId) => {
       <div class="likes-container">
       </div>
     </section>`;
-
   butt.innerText = 'Comment';
+
+  const likesContainer = showCard.querySelector('div.likes-container');
+  likes.append(likesCount, text);
+  likesContainer.append(likeBtt, likes);
+  showCard.appendChild(butt);
+  container.appendChild(showCard);
+
   showLikes(likesCount, showId).then(() => {
     likeBtt.addEventListener('click', () => {
       fetchPostInv('/likes', { item_id: showId }).then(() => {
@@ -42,16 +48,20 @@ const createShowCard = async (container, show, showId) => {
       });
     });
   });
-  const likesContainer = showCard.querySelector('div.likes-container');
-
-  likes.append(likesCount, text);
-  likesContainer.append(likeBtt, likes);
-  showCard.appendChild(butt);
-  container.appendChild(showCard);
 
   butt.addEventListener('click', () => {
     document.body.style.overflowY = 'hidden';
     createCommentsPopup(show, showId);
+  });
+
+  likeBtt.addEventListener('mouseover', () => {
+    likeBtt.firstChild.classList.replace('fa-regular', 'fa-solid');
+    likeBtt.firstChild.style.color = 'red';
+  });
+
+  likeBtt.addEventListener('mouseout', () => {
+    likeBtt.firstChild.classList.replace('fa-solid', 'fa-regular');
+    likeBtt.firstChild.style.color = '#fdfdfd';
   });
 
   likeBtt.addEventListener('click', () => {
@@ -69,7 +79,6 @@ const createShowCard = async (container, show, showId) => {
 
   const allmovies = document.querySelector('#shows-preview');
   const moviecounter = counter(allmovies);
-
   const displacounter = document.querySelector('.counter');
 
   displacounter.innerHTML = `<a href="#scripted">Scripted(${moviecounter})</a>`;

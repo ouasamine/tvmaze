@@ -2,7 +2,7 @@
 
 # TVmaze
 
-> TVmaze is a website about TV shows and series, it present different shows with their details and informations and gives the user to like or comment on them. The website is based on an external API that provides all the shows details
+> TVmaze is a website about TV famous shows, it presents details about different shows and gives the user the ability to like or comment on their preferred show. The website is based on an [external API](https://www.tvmaze.com/api) that provides all shows details.
 
 
 ## Built With
@@ -11,9 +11,9 @@
 - JavaScript
 - Webpack
 
-<!-- ## Live Demo
+## Live Demo
 
-Check [the live version](https://ouasamine.github.io/live) of this project. -->
+Check [the live version](https://ouasamine.github.io/tvmaze) of this project.
 
 ## Getting Started
 
@@ -26,13 +26,15 @@ To get a local copy up and running follow these simple steps.
 
 ### Setup
 
-  To clone and run this project on your local machine please Fork the project files from this repository on your machine then on your bash run the following commands inside the project directory: 
+  To clone and run this project on your local machine please Fork the project files from this repository on your machine then on your bash run the following commands inside the project directory _(The project files are already compiled, if you only wish to visualise the running version of the project you can jump to step 4)_: 
 
 1. Run `npm install` To install webpack and project dependencies _(a packet manager is required)_.
 
 2. Run `npm run build` To build project files in development mode **OR** `npm run dist` To build project files in production mode _(The destination folder is `/dist`)_.
 
-3. To open the project you can either open the `index.html` inside the `/dist` folder **OR** run `npm run start` To run the project on webpack live server.
+3. To open the Webpack liver server run `npm run start`.
+   
+4. To run the project open the `index.html` inside the `/dist` folder.
 
 ### Setup
 

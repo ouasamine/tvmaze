@@ -2,16 +2,16 @@ import { fetchGetInv, fetchPostInv, fetchShow } from './api-fetches.js';
 import commentsCounter from './comments-counter.js';
 
 async function createShowComments(commentsDisplay, showId) {
-  commentsDisplay.innerHTML = '';
   await fetchGetInv(`/comments?item_id=${showId}`).then((comments) => {
-    if (comments.length > 0) {
+    if (!comments.error) {
+      const commentsWrapper = document.createElement('div');
+      commentsDisplay.innerHTML = '';
       comments.forEach((comment) => {
-        commentsDisplay.innerHTML += `
-          <span>${comment.creation_date} ${comment.username}: ${comment.comment}</span>
+        commentsWrapper.innerHTML += `
+          <span>[${comment.creation_date}] ${comment.username}: ${comment.comment}</span>
         `;
       });
-    } else {
-      commentsDisplay.innerHTML += '<p>No comments yet!</p>';
+      commentsDisplay.appendChild(commentsWrapper);
     }
   });
   const commentsDisplayHeader = document.createElement('h3');
@@ -33,7 +33,7 @@ export default async function createCommentsPopup(showObj, showId) {
   await fetchShow('shows', showId, '/seasons').then((show) => {
     seasons = show.pop().number;
   });
-
+  const popupContainer = document.createElement('div');
   const popupWindow = document.createElement('div');
   const closeBtt = document.createElement('div');
   const commentsDisplay = document.createElement('div');
@@ -47,11 +47,12 @@ export default async function createCommentsPopup(showObj, showId) {
   newCommentForm.classList.add('new-comment-form');
   newCommentOwner.type = 'text';
   popupWindow.id = 'comments-popup';
+  popupContainer.id = 'popup-container';
 
   closeBtt.innerHTML = '<div></div><div></div>';
   popupWindow.innerHTML = `
       <div class="img-wrapper">
-          <img src="${showObj.image.original}">
+          <img src="${showObj.image.medium}">
       </div>
       <h2 class="show-name">${showObj.name}</h2>
       <div class="details">
@@ -61,6 +62,9 @@ export default async function createCommentsPopup(showObj, showId) {
           <span>Premiered on: ${showObj.premiered}</span>
       </div>
   `;
+  commentsDisplay.innerHTML = '<p>No comments yet</p>';
+  newCommentOwner.placeholder = 'Your name';
+  newCommentContent.placeholder = 'Your comment';
   popupWindow.insertBefore(closeBtt, popupWindow.firstChild);
 
   newCommentBtt.innerText = 'Comment';
@@ -87,7 +91,9 @@ export default async function createCommentsPopup(showObj, showId) {
 
   closeBtt.addEventListener('click', () => {
     document.body.style.overflowY = 'auto';
-    popupWindow.remove();
+    popupContainer.remove();
   });
-  document.body.appendChild(popupWindow);
+
+  popupContainer.appendChild(popupWindow);
+  document.body.appendChild(popupContainer);
 }
