@@ -56,10 +56,10 @@ export default async function createCommentsPopup(showObj, showId) {
       </div>
       <h2 class="show-name">${showObj.name}</h2>
       <div class="details">
-          <span>Genres  : ${showObj.genres.toString().replace(/,/g, ' | ')}</span>
-          <span>N° of seasons: ${seasons}</span>
-          <span>Created by: ${creators.toString().replace(/,/g, ' | ')}</span>
-          <span>Premiered on: ${showObj.premiered}</span>
+          <span><strong>Genres  : </strong>${showObj.genres.toString().replace(/,/g, ' | ')}</span>
+          <span><strong>N° of seasons: </strong>${seasons}</span>
+          <span><strong>Created by: </strong>${creators.toString().replace(/,/g, ' | ')}</span>
+          <span><strong>Premiered on: </strong>${showObj.premiered}</span>
       </div>
   `;
   commentsDisplay.innerHTML = '<p>No comments yet</p>';

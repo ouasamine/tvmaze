@@ -1,19 +1,7 @@
 import createCommentsPopup from './comments-popup.js';
-import { fetchGetInv, fetchPostInv } from './api-fetches.js';
+import { fetchPostInv } from './api-fetches.js';
 
-async function showLikes(likesCount, showId) {
-  likesCount.innerText = '';
-  let likes = 0;
-  await fetchGetInv('/likes').then((res) => {
-    if (res.filter((item) => item.item_id === showId).pop()) {
-      likes = res.filter((item) => item.item_id === showId).pop().likes;
-    }
-  });
-
-  likesCount.innerText = `${likes}`;
-}
-
-const createShowCard = async (container, show, showId) => {
+const createShowCard = async (container, show, showLikes) => {
   const showCard = document.createElement('div');
   const butt = document.createElement('button');
   const likeBtt = document.createElement('button');
@@ -34,6 +22,7 @@ const createShowCard = async (container, show, showId) => {
       </div>
     </section>`;
   butt.innerText = 'Comment';
+  likesCount.innerText = showLikes;
 
   const likesContainer = showCard.querySelector('div.likes-container');
   likes.append(likesCount, text);
@@ -41,24 +30,23 @@ const createShowCard = async (container, show, showId) => {
   showCard.appendChild(butt);
   container.appendChild(showCard);
 
-  showLikes(likesCount, showId).then(() => {
-    likeBtt.addEventListener('click', () => {
-      fetchPostInv('/likes', { item_id: showId }).then(() => {
-        showLikes(likesCount, showId);
-      });
-    });
-  });
-
   butt.addEventListener('click', () => {
     document.body.style.overflowY = 'hidden';
-    createCommentsPopup(show, showId);
+    createCommentsPopup(show, show.id);
   });
 
-  likeBtt.addEventListener('click', () => {
+  if (window.localStorage.getItem(show.id)) {
     likeBtt.firstChild.classList.replace('fa-regular', 'fa-solid');
     likeBtt.firstChild.style.color = 'red';
-    fetchPostInv('/likes', { item_id: showId });
-  });
+  } else {
+    likeBtt.addEventListener('click', () => {
+      likesCount.innerText = parseInt(likesCount.innerText, 10) + 1;
+      likeBtt.firstChild.classList.replace('fa-regular', 'fa-solid');
+      likeBtt.firstChild.style.color = 'red';
+      fetchPostInv('/likes', { item_id: show.id });
+      window.localStorage.setItem(show.id, 'like');
+    });
+  }
 };
 
 export default createShowCard;

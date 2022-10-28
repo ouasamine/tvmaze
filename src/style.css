@@ -216,10 +216,6 @@ button:hover {
   width: 400px;
 }
 
-#comments-popup .img-wrapper img {
-  width: 100%;
-}
-
 #comments-popup .show-name {
   font-size: 2.2rem;
 }
@@ -265,6 +261,11 @@ button:hover {
 .new-comment-form textarea {
   min-height: 150px;
   resize: none;
+}
+
+.new-comment-form input,
+.new-comment-form textarea {
+  text-align: left !important;
 }
 
 footer {
