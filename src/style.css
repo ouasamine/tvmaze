@@ -86,13 +86,13 @@ button:hover {
 }
 
 #shows-preview {
-  min-width: 248px;
+  width: 100%;
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
   padding: 50px 5%;
-  background-color: #0f1519;
+  background-color: #ededfd;
 }
 
 .movie-holder {
@@ -138,12 +138,16 @@ button:hover {
   cursor: pointer;
 }
 
+.like-button:hover i {
+  color: red;
+}
+
 .like-button:hover {
   background: none;
 }
 
 .like-button:active {
-  background: red;
+  background: none;
 }
 
 #popup-container {

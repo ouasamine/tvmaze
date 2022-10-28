@@ -54,34 +54,11 @@ const createShowCard = async (container, show, showId) => {
     createCommentsPopup(show, showId);
   });
 
-  likeBtt.addEventListener('mouseover', () => {
+  likeBtt.addEventListener('click', () => {
     likeBtt.firstChild.classList.replace('fa-regular', 'fa-solid');
     likeBtt.firstChild.style.color = 'red';
-  });
-
-  likeBtt.addEventListener('mouseout', () => {
-    likeBtt.firstChild.classList.replace('fa-solid', 'fa-regular');
-    likeBtt.firstChild.style.color = '#fdfdfd';
-  });
-
-  likeBtt.addEventListener('click', () => {
     fetchPostInv('/likes', { item_id: showId });
   });
-
-  const counter = (moviesContainer) => {
-    let counter = 0;
-    const movies = moviesContainer.querySelectorAll('.movie-holder');
-    movies.forEach(() => {
-      counter += 1;
-    });
-    return counter;
-  };
-
-  const allmovies = document.querySelector('#shows-preview');
-  const moviecounter = counter(allmovies);
-  const displacounter = document.querySelector('.counter');
-
-  displacounter.innerHTML = `<a href="#scripted">Scripted(${moviecounter})</a>`;
 };
 
 export default createShowCard;
