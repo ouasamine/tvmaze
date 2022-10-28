@@ -36,16 +36,6 @@ To get a local copy up and running follow these simple steps.
    
 4. To run the project open the `index.html` inside the `/dist` folder.
 
-### Setup
-
-  To clone and run this project on your machine please follow the instructions: 
-
-1. Download the project files as a ZIP file using the `code` button in the github repository interface.
-
-2. Extract the project folder from the ZIP file.
-
-3. Browse to the project folder and open the `index.html` file.
-
 
 ## Authors
 
