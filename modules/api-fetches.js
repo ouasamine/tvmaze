@@ -5,7 +5,7 @@ export function fetchShow(endpoint, id, embed = '') {
 }
 
 export function fetchPostInv(endpoint, Obj) {
-  return fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/kN7H2rbNR2T7ibxmLmef${endpoint}`, {
+  return fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/uNpkpyIlBwuRFCvHB5DB${endpoint}`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify(Obj),
@@ -13,6 +13,6 @@ export function fetchPostInv(endpoint, Obj) {
 }
 
 export function fetchGetInv(endpoint) {
-  return fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/kN7H2rbNR2T7ibxmLmef${endpoint}`)
+  return fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/uNpkpyIlBwuRFCvHB5DB${endpoint}`)
     .then((response) => response.json());
 }
