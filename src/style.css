@@ -165,19 +165,22 @@ button:hover {
   right: 10%;
   bottom: 25px;
   left: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 35px 15px;
-  gap: 20px;
+  display: grid;
+  grid-template-areas: 'img header header header'
+    'img details details details'
+    'newcomment newcomment comments comments';
+  grid-auto-rows: auto;
+  grid-template-columns: calc(25% - 60/4px) 
+    calc(25% - 60/4px) 
+    calc(25% - 60/4px) 
+    calc(25% - 60/4px);
+  grid-template-rows: 50px auto;
+  padding: 40px 5%;
+  column-gap: 20px;
+  row-gap: 10px;
   overflow-y: auto;
   border-radius: 4px;
   scroll-behavior: smooth;
-}
-
-#comments-popup * {
-  max-width: 700px;
-  text-align: center;
 }
 
 #comments-popup h3 {
@@ -211,47 +214,80 @@ button:hover {
 }
 
 #comments-popup .img-wrapper {
-  width: 400px;
+  grid-area: img;
+}
+
+.img-wrapper img {
+  width: 100%;
+  border-radius: 4px;
 }
 
 #comments-popup .show-name {
   font-size: 2.2rem;
+  grid-area: header;
 }
 
 #comments-popup .details {
   display: grid;
-  grid-template: none / 50% 50%;
-  align-content: center;
-  border: 2px solid #fff;
-  column-gap: 15px;
-  row-gap: 15px;
-  padding: 15px;
+  grid-template: auto / max-content max-content;
+  align-content: start;
+  grid-area: details;
 }
 
-#comments-popup span {
-  margin: 5px 0;
+.details span {
+  max-width: 250px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #9a9a9a;
 }
 
 #comments-popup .comments-display {
-  width: 80%;
+  grid-area: comments;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #808080;
 }
 
-#comments-popup .comments-display div {
+.comments-display div {
   display: flex;
   flex-direction: column;
   text-align: center;
   height: 150px;
   overflow-y: auto;
+  padding: 5px 0;
+}
+
+.comments-display h3 {
+  padding: 8px 0;
+}
+
+.comments-display div span {
+  padding: 10px 5px;
+  border-top: 1px solid #5c5c5c;
+  border-bottom: 1px solid #5c5c5c;
+  text-align: left;
+  background-color: #ff8080;
+}
+
+.comments-display div span:not(:first-child) {
+  margin-top: -1px;
 }
 
 #comments-popup .new-comment-form {
   display: flex;
   flex-direction: column;
+  grid-area: newcomment;
+  padding: 5px;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  background-color: #808080;
 }
 
 .new-comment-form * {
   margin: 5px 0;
-  width: 350px;
+  width: 100%;
   padding: 8px 5px;
   color: #2c2c2c;
 }
@@ -264,6 +300,8 @@ button:hover {
 .new-comment-form input,
 .new-comment-form textarea {
   text-align: left !important;
+  background-color: #f2f2f2;
+  border: none;
 }
 
 footer {
@@ -285,13 +323,42 @@ footer {
     left: 10px;
     top: 10px;
     bottom: 10px;
+    grid-template-areas: 'header header'
+      'img details'
+      'newcomment newcomment'
+      'comments comments';
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+    padding: 10px;
   }
 
-  #comments-popup .img-wrapper {
-    width: 200px;
+  #comments-popup .show-name {
+    font-size: 1.7rem;
+    margin: 10px 0;
   }
 
-  .new-comment-form * {
-    width: 200px;
+  #comments-popup .details {
+    display: grid;
+    grid-template: auto / 100%;
+    align-content: start;
+    grid-area: details;
   }
+
+}
+
+@media screen and (max-width: 800px) {
+  #comments-popup {
+    grid-template-areas: 'header header'
+      'img details'
+      'newcomment newcomment'
+      'comments comments';
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+  }
+
+  #comments-popup .details {
+    display: grid;
+    grid-template: auto / max-content;
+    align-content: start;
+    grid-area: details;
+  }
+
 }
