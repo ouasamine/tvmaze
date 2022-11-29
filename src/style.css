@@ -166,14 +166,11 @@ button:hover {
   bottom: 25px;
   left: 10%;
   display: grid;
-  grid-template-areas: 'img header header header'
-    'img details details details'
-    'newcomment newcomment comments comments';
+  grid-template-areas: 'img header  header'
+    'img details  details'
+    'img comments newcomment';
   grid-auto-rows: auto;
-  grid-template-columns: calc(25% - 60/4px) 
-    calc(25% - 60/4px) 
-    calc(25% - 60/4px) 
-    calc(25% - 60/4px);
+  grid-template-columns: calc(33.33% - 13.33px) calc(33.33% - 13.33px) calc(33.33% - 13.33px);
   grid-template-rows: 50px auto;
   padding: 40px 5%;
   column-gap: 20px;
@@ -219,6 +216,7 @@ button:hover {
 
 .img-wrapper img {
   width: 100%;
+  height: 100%;
   border-radius: 4px;
 }
 
@@ -254,7 +252,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 150px;
+  height: 250px;
   overflow-y: auto;
   padding: 5px 0;
 }
@@ -356,7 +354,7 @@ footer {
 
   #comments-popup .details {
     display: grid;
-    grid-template: auto / max-content;
+    grid-template: auto / 100%;
     align-content: start;
     grid-area: details;
   }
